@@ -1,0 +1,17 @@
+# Build output
+build/
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.elf
+*.bin
+*.hex
+
+# Debug files
+*.d
+
+# Operating system files
+.DS_Store
+Thumbs.db
