@@ -15,3 +15,11 @@ firmware-core/
 ├── tests/      # Host-based tests
 ├── docs/       # Technical documentation
 └── CMakeLists.txt
+## Build
+
+This project uses CMake and Ninja.
+
+Configure the project:
+
+```powershell
+cmake -S . -B build -G Ninja
