@@ -21,6 +21,21 @@ target_compile_options(adc_conversion PRIVATE
     -Wpedantic
 )
 
+# Pointer utilities module
+add_library(pointer_utils
+    src/pointer_utils.c
+)
+
+target_include_directories(pointer_utils PUBLIC
+    include
+)
+
+target_compile_options(pointer_utils PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 # Main application
 add_executable(firmware_core
     src/main.c
@@ -28,6 +43,7 @@ add_executable(firmware_core
 
 target_link_libraries(firmware_core PRIVATE
     adc_conversion
+    pointer_utils
 )
 
 target_compile_options(firmware_core PRIVATE
@@ -51,9 +67,29 @@ target_compile_options(test_adc_conversion PRIVATE
     -Wpedantic
 )
 
+# Pointer utilities tests
+add_executable(test_pointer_utils
+    tests/test_pointer_utils.c
+)
+
+target_link_libraries(test_pointer_utils PRIVATE
+    pointer_utils
+)
+
+target_compile_options(test_pointer_utils PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 enable_testing()
 
 add_test(
     NAME adc_conversion_tests
     COMMAND test_adc_conversion
+)
+
+add_test(
+    NAME pointer_utils_tests
+    COMMAND test_pointer_utils
 )

@@ -76,3 +76,17 @@ See `docs/module_boundaries.md` for the module architecture and design decisions
 ## Development Approach
 
 The repository is being developed incrementally while practicing Embedded C, modular firmware design, testing, build systems, debugging, and version control.
+
+## Pointer Utilities Module
+
+The pointer utilities module demonstrates:
+
+- Pointer dereferencing and caller-owned data
+- Defensive NULL-pointer checks
+- `const` correctness for read-only buffers
+- Pointer + length APIs for bounded processing
+- Safe value swapping through pointers
+- Host-side tests for valid and failure cases
+- GDB-based pointer inspection
+
+See `docs/pointers_and_lifetime.md` for the related design and lifetime notes.
