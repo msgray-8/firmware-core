@@ -13,26 +13,31 @@ The project currently includes:
 - CTest-based test execution
 - GDB-based debugging practice
 - Technical documentation for module boundaries, pointers, ownership, and lifetime
+- A bounded command tokenizer with explicit error handling
 
 ## Project Structure
 
 ```text
 firmware-core/
 ├── docs/
+│   ├── arrays_strings_bounds.md
 │   ├── module_boundaries.md
 │   ├── pointers_and_lifetime.md
 │   └── toolchain.md
 ├── include/
 │   ├── adc_conversion.h
-│   └── pointer_utils.h
+│   ├── pointer_utils.h
+│   └── tokenizer.h
 ├── src/
 │   ├── adc_conversion.c
 │   ├── pointer_utils.c
+│   ├── tokenizer.c
 │   ├── day02_types_control_flow.c
 │   └── main.c
 ├── tests/
 │   ├── test_adc_conversion.c
-│   └── test_pointer_utils.c
+│   ├── test_pointer_utils.c
+│   └── test_tokenizer.c
 ├── .gitignore
 ├── CMakeLists.txt
 └── README.md
@@ -110,6 +115,32 @@ The pointer utilities module demonstrates:
 - Ownership and lifetime reasoning
 
 See `docs/pointers_and_lifetime.md` for the related pointer, ownership, and lifetime notes.
+
+## Tokenizer Module
+
+The tokenizer module demonstrates:
+
+- Safe array and buffer bounds handling
+- Capacity vs length reasoning
+- C string null-termination checks
+- Bounded scanning without relying on untrusted `strlen()`
+- In-place tokenization using `'\0'`
+- Pointer arrays for token references
+- Explicit error/status codes
+- Protection against too many tokens
+- Host-side boundary and failure testing
+
+Current tokenizer tests cover:
+
+- Normal command parsing
+- Empty input
+- Multiple spaces
+- Leading and trailing spaces
+- Too many tokens
+- Missing null terminator
+- NULL input buffer
+
+See `docs/arrays_strings_bounds.md` for the related array, string, and bounds notes.
 
 ## Development Approach
 

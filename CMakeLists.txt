@@ -36,6 +36,21 @@ target_compile_options(pointer_utils PRIVATE
     -Wpedantic
 )
 
+# Tokenizer module
+add_library(tokenizer
+    src/tokenizer.c
+)
+
+target_include_directories(tokenizer PUBLIC
+    include
+)
+
+target_compile_options(tokenizer PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 # Main application
 add_executable(firmware_core
     src/main.c
@@ -82,6 +97,22 @@ target_compile_options(test_pointer_utils PRIVATE
     -Wpedantic
 )
 
+# Tokenizer tests
+add_executable(test_tokenizer
+    tests/test_tokenizer.c
+)
+
+target_link_libraries(test_tokenizer PRIVATE
+    tokenizer
+)
+
+target_compile_options(test_tokenizer PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
+
 enable_testing()
 
 add_test(
@@ -92,4 +123,9 @@ add_test(
 add_test(
     NAME pointer_utils_tests
     COMMAND test_pointer_utils
+)
+
+add_test(
+    NAME tokenizer_tests
+    COMMAND test_tokenizer
 )
