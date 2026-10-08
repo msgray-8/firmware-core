@@ -14,6 +14,8 @@ The project currently includes:
 - GDB-based debugging practice
 - Technical documentation for module boundaries, pointers, ownership, and lifetime
 - A bounded command tokenizer with explicit error handling
+- A typed sensor/event model using structs, enums, and tagged unions
+- Explicit little-endian sensor-record serialization
 
 ## Project Structure
 
@@ -23,19 +25,23 @@ firmware-core/
 │   ├── arrays_strings_bounds.md
 │   ├── module_boundaries.md
 │   ├── pointers_and_lifetime.md
+│   ├── structs_unions_enums.md
 │   └── toolchain.md
 ├── include/
 │   ├── adc_conversion.h
+│   ├── event_model.h
 │   ├── pointer_utils.h
 │   └── tokenizer.h
 ├── src/
 │   ├── adc_conversion.c
+│   ├── event_model.c
 │   ├── pointer_utils.c
 │   ├── tokenizer.c
 │   ├── day02_types_control_flow.c
 │   └── main.c
 ├── tests/
 │   ├── test_adc_conversion.c
+│   ├── test_event_model.c
 │   ├── test_pointer_utils.c
 │   └── test_tokenizer.c
 ├── .gitignore
@@ -141,6 +147,29 @@ Current tokenizer tests cover:
 - NULL input buffer
 
 See `docs/arrays_strings_bounds.md` for the related array, string, and bounds notes.
+
+## Event Model and Serialization
+
+The event model module demonstrates:
+
+- Typed sensor records using `struct`
+- Enumerated event types
+- Tagged unions for variant event payloads
+- Constructor functions that keep tags and payloads consistent
+- `sizeof()` and `offsetof()` layout inspection
+- Alignment and padding awareness
+- Explicit little-endian serialization
+- Separation of in-memory layout from wire format
+
+Current event-model tests cover:
+
+- Sensor events
+- Button events
+- Error events
+- Exact sensor-record serialization bytes
+- Runtime layout inspection
+
+See `docs/structs_unions_enums.md` for layout, tagged-union, and serialization notes.
 
 ## Development Approach
 

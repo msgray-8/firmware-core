@@ -51,6 +51,21 @@ target_compile_options(tokenizer PRIVATE
     -Wpedantic
 )
 
+# Event model module
+add_library(event_model
+    src/event_model.c
+)
+
+target_include_directories(event_model PUBLIC
+    include
+)
+
+target_compile_options(event_model PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 # Main application
 add_executable(firmware_core
     src/main.c
@@ -112,6 +127,20 @@ target_compile_options(test_tokenizer PRIVATE
     -Wpedantic
 )
 
+# Event model tests
+add_executable(test_event_model
+    tests/test_event_model.c
+)
+
+target_link_libraries(test_event_model PRIVATE
+    event_model
+)
+
+target_compile_options(test_event_model PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
 
 enable_testing()
 
@@ -128,4 +157,9 @@ add_test(
 add_test(
     NAME tokenizer_tests
     COMMAND test_tokenizer
+)
+
+add_test(
+    NAME event_model_tests
+    COMMAND test_event_model
 )
