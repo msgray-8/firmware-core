@@ -171,6 +171,22 @@ Current event-model tests cover:
 
 See `docs/structs_unions_enums.md` for layout, tagged-union, and serialization notes.
 
+## Debugging Checkpoint
+
+Day 7 focused on structured debugging and root-cause analysis using GDB.
+
+The checkpoint covered:
+
+- NULL-pointer propagation
+- Off-by-one array access
+- Tagged-union tag/payload mismatches
+- GDB breakpoints and variable inspection
+- Call-stack analysis using backtraces
+- Root-cause fixes instead of symptom masking
+- Regression-test thinking
+
+See `docs/day07_bug_report.md` for the debugging cases and lessons.
+
 ## Development Approach
 
 The repository is being developed incrementally while practicing:
