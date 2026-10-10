@@ -16,6 +16,8 @@ The project currently includes:
 - A bounded command tokenizer with explicit error handling
 - A typed sensor/event model using structs, enums, and tagged unions
 - Explicit little-endian sensor-record serialization
+- A tested bitfield helper module for register-style field extraction and updates
+- Structured GDB debugging and root-cause analysis practice
 
 ## Project Structure
 
@@ -23,17 +25,21 @@ The project currently includes:
 firmware-core/
 ├── docs/
 │   ├── arrays_strings_bounds.md
+│   ├── bitwise_operations.md
+│   ├── day07_bug_report.md
 │   ├── module_boundaries.md
 │   ├── pointers_and_lifetime.md
 │   ├── structs_unions_enums.md
 │   └── toolchain.md
 ├── include/
 │   ├── adc_conversion.h
+│   ├── bitfield.h
 │   ├── event_model.h
 │   ├── pointer_utils.h
 │   └── tokenizer.h
 ├── src/
 │   ├── adc_conversion.c
+│   ├── bitfield.c
 │   ├── event_model.c
 │   ├── pointer_utils.c
 │   ├── tokenizer.c
@@ -41,6 +47,7 @@ firmware-core/
 │   └── main.c
 ├── tests/
 │   ├── test_adc_conversion.c
+│   ├── test_bitfield.c
 │   ├── test_event_model.c
 │   ├── test_pointer_utils.c
 │   └── test_tokenizer.c

@@ -66,6 +66,21 @@ target_compile_options(event_model PRIVATE
     -Wpedantic
 )
 
+# Bitfield module
+add_library(bitfield
+    src/bitfield.c
+)
+
+target_include_directories(bitfield PUBLIC
+    include
+)
+
+target_compile_options(bitfield PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 # Main application
 add_executable(firmware_core
     src/main.c
@@ -142,6 +157,21 @@ target_compile_options(test_event_model PRIVATE
     -Wpedantic
 )
 
+# Bitfield tests
+add_executable(test_bitfield
+    tests/test_bitfield.c
+)
+
+target_link_libraries(test_bitfield PRIVATE
+    bitfield
+)
+
+target_compile_options(test_bitfield PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
 enable_testing()
 
 add_test(
@@ -162,4 +192,9 @@ add_test(
 add_test(
     NAME event_model_tests
     COMMAND test_event_model
+)
+
+add_test(
+    NAME bitfield_tests
+    COMMAND test_bitfield
 )
